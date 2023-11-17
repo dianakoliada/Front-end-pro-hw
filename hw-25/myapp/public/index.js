@@ -23,20 +23,19 @@ function getFromLocalStorage() {
    return storedbasketArr ?? [];
 }
 
+const ORIGIN = window.location.origin;
 function eventedPushState(state, title, url) {
    var pushChangeEvent = new CustomEvent('onpushstate', {
-     detail: {
-       state,
-       title,
-       url: window.location.pathname,
+      detail: {
+         state,
+         title,
+         url,
       },
       
    });
    document.dispatchEvent(pushChangeEvent);
    return history.pushState(state, title, [ORIGIN, url].join('/'));
 };
-
-const ORIGIN = window.location.origin;
 
 function displayCategories() {
    fetch('/api/data')
@@ -126,7 +125,7 @@ document.addEventListener('onpushstate', (e) => {
    let selectedUrl = e.detail.state;
 
    // render products Mirrors
-   if (e.detail.url === '/Mirrors') {
+   if (e.detail.url === 'Mirrors') {
       clearPage();
 
       fetch('/api/data')
@@ -179,7 +178,7 @@ document.addEventListener('onpushstate', (e) => {
    };
 
    // render products Blankets
-   if (e.detail.url === '/Blankets') {
+   if (e.detail.url === 'Blankets') {
       clearPage();
 
       fetch('/api/data')
@@ -232,7 +231,7 @@ document.addEventListener('onpushstate', (e) => {
    };
 
    // render products Pillows
-   if (e.detail.url === '/Pillows') {
+   if (e.detail.url === 'Pillows') {
       clearPage();
 
       fetch('/api/data')
