@@ -52,6 +52,11 @@
       padding: 15px 30px;
    }
 
+   .img {
+      display: inline-block;
+      padding-top: 20px;
+   }
+
    .error {
       padding: 20px;
       color: red;
@@ -61,7 +66,7 @@
 <body>
    <div class="container">
       <h1>Weather Forecast</h1>
-      <input type="text" placeholder="Enter the city" id="js-input">
+      <input type="text" placeholder="Enter the city" id="js-input" value="LVIV">
       <button onclick=getWeather() class="btn">Search</button>
       <div id="wrapper"></div>
 
@@ -75,7 +80,6 @@
    function getWeather() {
       let inputInfo = input.value;
       let xhr = new XMLHttpRequest();
-      console.log(xhr);
 
       xhr.open('GET',
          `http://api.openweathermap.org/data/2.5/weather?q=${inputInfo}&units=metric&APPID=5d066958a60d315387d9492393935c19`,
@@ -104,14 +108,18 @@
          'deg': weatherInfo.wind.deg,
       }
 
+
+      let iconValue = weatherInfo.weather[0].icon;
+      let img = document.createElement('img');
+      img.classList.add('img');
+      img.src = `http://openweathermap.org/img/w/${iconValue}.png`;
+      wrapper.appendChild(img);
+
       for (let key in objInfo) {
          if (objInfo.hasOwnProperty(key)) {
             let value = objInfo[key]
-            let weatherCard = document.createElement('p');
+            const weatherCard = document.createElement('p');
             weatherCard.innerHTML += `${key}: ${value}`;
-            let img = document.createElement('img');
-            img.src = 'http://openweathermap.org/img/w/10d.png';
-            weatherCard.appendChild(img);
             wrapper.appendChild(weatherCard);
          }
       }
