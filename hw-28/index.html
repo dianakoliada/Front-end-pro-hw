@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>AJAX</title>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;800&family=Poppins:wght@200;300;500&family=Roboto+Condensed:wght@400;500&family=Roboto:wght@400;500;900&display=swap"
+      rel="stylesheet">
+
+</head>
+<style>
+   body {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      background: url('https://wallpapers.com/images/hd/1920-x-1080-nature-desktop-29cb5o3ha06ywwu7.jpg') center/cover no-repeat;
+      font-family: 'Roboto', sans-serif;
+      letter-spacing: 1px;
+   }
+
+   .container {
+      width: 40%;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, .7);
+      text-align: center;
+      font-weight: 600;
+   }
+
+   input {
+      width: 17%;
+      height: 16px;
+      padding: 15px;
+   }
+
+   input,
+   .btn {
+      outline: none;
+      border: none;
+   }
+
+   .btn {
+      background-color: rgb(14 60 96);
+      color: white;
+      padding: 15px 30px;
+   }
+
+   .error {
+      padding: 20px;
+      color: red;
+   }
+</style>
+
+<body>
+   <div class="container">
+      <h1>Weather Forecast</h1>
+      <input type="text" placeholder="Enter the city" id="js-input">
+      <button onclick=getWeather() class="btn">Search</button>
+      <div id="wrapper"></div>
+
+   </div>
+</body>
+
+<script>
+   const wrapper = document.getElementById('wrapper');
+   const input = document.getElementById('js-input');
+
+   function getWeather() {
+      let inputInfo = input.value;
+      let xhr = new XMLHttpRequest();
+      console.log(xhr);
+
+      xhr.open('GET',
+         `http://api.openweathermap.org/data/2.5/weather?q=${inputInfo}&units=metric&APPID=5d066958a60d315387d9492393935c19`,
+         true)
+
+      xhr.onload = function () {
+         if (xhr.status === 200) {
+            wrapper.innerHTML = '';
+            let weatherInfo = JSON.parse(this.response);
+            displayWeather(weatherInfo, inputInfo);
+         } else {
+            wrapper.innerHTML += `<p class="error">${xhr.response}</p>`;
+         }
+      }
+      xhr.send();
+   }
+
+   function displayWeather(weatherInfo) {
+      let objInfo = {
+         'city': weatherInfo.name,
+         'temp': weatherInfo.main.temp,
+         'pressure': weatherInfo.main.pressure,
+         'description': weatherInfo.weather[0].description,
+         'humidity': weatherInfo.main.humidity,
+         'speed': weatherInfo.wind.speed,
+         'deg': weatherInfo.wind.deg,
+      }
+
+      for (let key in objInfo) {
+         if (objInfo.hasOwnProperty(key)) {
+            let value = objInfo[key]
+            let weatherCard = document.createElement('p');
+            weatherCard.innerHTML += `${key}: ${value}`;
+            let img = document.createElement('img');
+            img.src = 'http://openweathermap.org/img/w/10d.png';
+            weatherCard.appendChild(img);
+            wrapper.appendChild(weatherCard);
+         }
+      }
+   }
+</script>
+
+</html>
