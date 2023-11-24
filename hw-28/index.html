@@ -66,7 +66,7 @@
 <body>
    <div class="container">
       <h1>Weather Forecast</h1>
-      <input type="text" placeholder="Enter the city" id="js-input" value="LVIV">
+      <input type="text" placeholder="Enter the city" id="js-input">
       <button onclick=getWeather() class="btn">Search</button>
       <div id="wrapper"></div>
 
@@ -91,6 +91,7 @@
             let weatherInfo = JSON.parse(this.response);
             displayWeather(weatherInfo, inputInfo);
          } else {
+            wrapper.innerHTML = '';
             wrapper.innerHTML += `<p class="error">${xhr.response}</p>`;
          }
       }
