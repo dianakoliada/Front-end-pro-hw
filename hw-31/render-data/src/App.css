@@ -1,0 +1,21 @@
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0px;
+   padding: 0px;
+}
+
+.list-items {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+.list-item {
+   list-style: none;
+   font-size: 1.7em;
+   line-height: 45px;
+}

@@ -1,0 +1,30 @@
+* {
+   box-sizing: border-box;
+}
+
+body {
+   margin: 0;
+   padding: 0;
+}
+
+.App {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   column-gap: 20px;
+   margin-top: 150px;
+}
+
+.btn {
+   outline: none;
+   border: none;
+   padding: 10px 30px;
+   border-radius: 8px;
+   cursor: pointer;
+   transition: all 1s;
+}
+
+.btn:hover {
+   background-color: rgb(179, 179, 179);
+}
+
