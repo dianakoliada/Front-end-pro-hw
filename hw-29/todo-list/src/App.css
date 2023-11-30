@@ -78,6 +78,7 @@ margin-bottom: 4rem;
    color: #fff;
    list-style: none;
    padding: 0.65rem;
+   cursor: pointer;
 }
 
 .done {

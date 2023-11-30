@@ -28,10 +28,7 @@ class App extends Component {
 
    setItemDone = (e) => {
       let el = e.target;
-
-      if (this.state.todoList) {
-         el.classList.toggle('done');
-      }
+      el.classList.toggle('done');
    }
 
    render() {
@@ -43,7 +40,7 @@ class App extends Component {
                ))}
             </ul>
             <form className="input-group" onSubmit={this.onSubmitHandler}>
-               <input type="text" id="input" className="input" required autoComplete="off" name="input" ></input>
+               <input type="text" id="input" className="input" required autoComplete="off" name="input" />
                <label htmlFor="text" className="label">Enter task</label>
                <button className="btn" type="submit">Add</button>
             </form>
