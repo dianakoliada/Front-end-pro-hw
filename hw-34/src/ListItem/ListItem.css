@@ -1,0 +1,7 @@
+.list-item {
+   font-size: 1.25rem;
+   color: #fff;
+   list-style: none;
+   padding: 0.65rem;
+   cursor: pointer;
+}
