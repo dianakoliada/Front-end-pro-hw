@@ -1,8 +1,6 @@
 import './Form.css';
-import { useState } from 'react';
 
-const Form = () => {
-   const [todoList, setTodoList] = useState([]);
+const Form = ({ setTodoList }) => {
 
    const onSubmitHandler = (e) => {
       e.preventDefault();

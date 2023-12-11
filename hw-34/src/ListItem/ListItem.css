@@ -1,7 +1,20 @@
+.list-item-wrap {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 60%;
+}
+
 .list-item {
    font-size: 1.25rem;
    color: #fff;
    list-style: none;
    padding: 0.65rem;
    cursor: pointer;
+}
+
+.list-item-wrap .btn-del {
+   padding: 0.7rem;
+   font-size: 1rem;
+   border: none;
 }

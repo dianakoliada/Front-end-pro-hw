@@ -1,10 +1,10 @@
 import './List.css';
 import ListItem from '../ListItem/ListItem';
 
-const List = () => {
+const List = ({ todoList, setTodoList }) => {
    return (
       <ul className='list-items'>
-         <ListItem />
+         <ListItem todoList={todoList} setTodoList={setTodoList} />
       </ul>
    )
 };
