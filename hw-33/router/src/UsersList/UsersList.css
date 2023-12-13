@@ -1,0 +1,17 @@
+.users-holder {
+   margin: 0 auto;
+}
+
+.user-holder {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   margin: 2rem;
+   padding: 1rem;
+   background-color: rgb(246, 246, 246);
+}
+
+.to-album-link {
+   color: black;
+}

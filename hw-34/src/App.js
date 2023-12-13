@@ -6,9 +6,14 @@ import Form from './Form/Form';
 function App() {
    const [todoList, setTodoList] = useState([]);
 
+   const onTaskDeleteHandler = (taskId) => {
+      const updatedList = todoList.filter((task) => task.id !== taskId);
+      setTodoList(updatedList);
+   }
+
    return (
       <div className="App">
-         <List todoList={todoList} setTodoList={setTodoList} />
+         <List todoList={todoList} setTodoList={setTodoList} onTaskDeleteHandler={onTaskDeleteHandler} />
          <Form setTodoList={setTodoList} />
       </div>
    );
