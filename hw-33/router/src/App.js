@@ -12,7 +12,6 @@ import './App.css';
 function App() {
    const [users, setUsers] = useState([]);
    const [albums, setAlbums] = useState([]);
-   console.log("albums: ", albums);
    const [photos, setPhotos] = useState([]);
    const [selectedUserId, setSelectedUserId] = useState(null);
    const [selectedAlbumId, setSelectedAlbumId] = useState(null);

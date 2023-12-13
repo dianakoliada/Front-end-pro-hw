@@ -3,7 +3,19 @@ import { useEffect } from 'react';
 import { Link, Route, useRouteMatch } from "react-router-dom";
 import AlbumsList from '../AlbumsList/AlbumsList';
 
-const UsersList = ({ users, setUsers, selectedUserId, setSelectedUserId, albums, setAlbums, photos, setPhotos, selectedAlbumId, setSelectedAlbumId }) => {
+const UsersList = (
+   {
+      users,
+      setUsers,
+      selectedUserId,
+      setSelectedUserId,
+      albums,
+      setAlbums,
+      photos,
+      setPhotos,
+      selectedAlbumId,
+      setSelectedAlbumId
+   }) => {
    const { path } = useRouteMatch();
 
    useEffect(() => {
@@ -32,11 +44,18 @@ const UsersList = ({ users, setUsers, selectedUserId, setSelectedUserId, albums,
                <Link
                   className='to-album-link'
                   to={`${path}/albums/${user.id}`}
-                  onClick={() => setSelectedUserId(user.id)}>Albums {user.id}
+                  onClick={() => setSelectedUserId(user.id)}>Albums
                </Link>
                {selectedUserId === user.id && (
                   <Route path={`${path}/albums/:id`}>
-                     <AlbumsList albums={albums} setAlbums={setAlbums} photos={photos} setPhotos={setPhotos} selectedAlbumId={selectedAlbumId} setSelectedAlbumId={setSelectedAlbumId} />
+                     <AlbumsList
+                        albums={albums}
+                        setAlbums={setAlbums}
+                        photos={photos}
+                        setPhotos={setPhotos}
+                        selectedAlbumId={selectedAlbumId}
+                        setSelectedAlbumId={setSelectedAlbumId}
+                        selectedUserId={selectedUserId} />
                   </Route>
                )}
             </div>

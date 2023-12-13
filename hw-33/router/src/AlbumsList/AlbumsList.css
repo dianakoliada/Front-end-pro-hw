@@ -1,4 +1,15 @@
 .album-holder {
+   min-width: 32rem;
+   max-width: 100%;
    display: flex;
-   gap: 1rem;
+   flex-direction: column;
+   row-gap: 0.8rem;
+   margin: 1.5rem;
+   padding: 1rem;
+   background-color: white;
+}
+
+.to-photo-link {
+   color: black;
+   text-align: center;
 }

@@ -1,16 +1,12 @@
 import React, { useEffect } from "react";
-import {
-   useParams
-} from "react-router-dom";
 import './PhotosList.css';
 
-const PhotosList = ({ photos, setPhotos }) => {
-   const { id } = useParams();
+const PhotosList = ({ photos, setPhotos, selectedAlbumId }) => {
 
    useEffect(() => {
       const getPhotos = async () => {
          try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${id}`);
+            const response = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${selectedAlbumId}`);
             if (!response.ok) {
                throw new Error("Failed to fetch photos");
             }
@@ -22,21 +18,20 @@ const PhotosList = ({ photos, setPhotos }) => {
          }
       };
 
-      if (id) {
+      if (selectedAlbumId) {
          getPhotos();
       }
-   }, [id]);
+   }, [selectedAlbumId]);
 
    return (
-      <>
-         <h1>Test</h1>
-         {/* {photos.map((photo) => (
+      <div className="img-list-holder">
+         {photos.map((photo) => (
             <div key={photo.id} className="img-holder">
-               <h2>{photo.id}</h2>
-               <img className="img" src={photo.url} alt="photo" />
+               <p className="text">id: {photo.id}</p>
+               <img className="img" src={photo.thumbnailUrl} alt="" />
             </div>
-         ))} */}
-      </>
+         ))}
+      </div>
    )
 }
 

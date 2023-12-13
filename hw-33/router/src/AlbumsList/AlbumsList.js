@@ -1,16 +1,24 @@
 import React, { useEffect } from "react";
-import { Link, Route, useRouteMatch, useParams } from "react-router-dom";
+import { Link, Route, useRouteMatch } from "react-router-dom";
 import './AlbumsList.css';
 import PhotosList from '../PhotosList/PhotosList';
 
-const AlbumsList = ({ albums, setAlbums, photos, setPhotos, selectedAlbumId, setSelectedAlbumId }) => {
-   const { id } = useParams();
+const AlbumsList = (
+   {
+      albums,
+      setAlbums,
+      photos,
+      setPhotos,
+      selectedAlbumId,
+      setSelectedAlbumId,
+      selectedUserId
+   }) => {
    const { path } = useRouteMatch();
 
    useEffect(() => {
       const getAlbums = async () => {
          try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${id}`);
+            const response = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${selectedUserId}`);
             if (!response.ok) {
                throw new Error("Failed to fetch albums");
             }
@@ -22,10 +30,10 @@ const AlbumsList = ({ albums, setAlbums, photos, setPhotos, selectedAlbumId, set
          }
       };
 
-      if (id) {
+      if (selectedUserId) {
          getAlbums();
       }
-   }, [id]);
+   }, [selectedUserId]);
 
    return (
       <>
@@ -37,11 +45,14 @@ const AlbumsList = ({ albums, setAlbums, photos, setPhotos, selectedAlbumId, set
                   <Link
                      className='to-photo-link'
                      to={`${path}/photos/${album.id}`}
-                     onClick={() => setSelectedAlbumId(album.id)}> Photos {album.id}
+                     onClick={() => setSelectedAlbumId(album.id)}> Photos
                   </Link>
                   {selectedAlbumId === album.id && (
                      <Route path={`${path}/photos/:id`}>
-                        <PhotosList photos={photos} setPhotos={setPhotos} />
+                        <PhotosList
+                           photos={photos}
+                           setPhotos={setPhotos}
+                           selectedAlbumId={selectedAlbumId} />
                      </Route>
                   )}
                </div>

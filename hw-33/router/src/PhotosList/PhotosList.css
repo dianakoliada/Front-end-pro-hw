@@ -1,0 +1,12 @@
+.img-list-holder {
+   width: 60rem;
+   display: flex;
+   flex-wrap: wrap;
+   align-items: center;
+   justify-content: center;
+   gap: 1rem;
+}
+
+.img-holder {}
+
+.img {}
