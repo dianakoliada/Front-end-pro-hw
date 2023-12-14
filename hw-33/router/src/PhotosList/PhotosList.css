@@ -1,5 +1,6 @@
 .img-list-holder {
-   width: 60rem;
+   max-width: 60rem;
+   min-width: 100%;
    display: flex;
    flex-wrap: wrap;
    align-items: center;

@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import './PhotosList.css';
 
 const PhotosList = ({ photos, setPhotos, selectedAlbumId }) => {

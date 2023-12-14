@@ -1,6 +1,6 @@
 import './UsersList.css';
 import { useEffect } from 'react';
-import { Link, Route, useRouteMatch } from "react-router-dom";
+import { Link, Route, useRouteMatch, useParams } from "react-router-dom";
 import AlbumsList from '../AlbumsList/AlbumsList';
 
 const UsersList = (
@@ -16,7 +16,18 @@ const UsersList = (
       selectedAlbumId,
       setSelectedAlbumId
    }) => {
+
    const { path } = useRouteMatch();
+
+   // const { userId } = useParams();
+   /**
+    * Як використовувати useParams(), якщо треба отримати user.id,
+         * передати цей user.id в URL
+         * зв'язати його із наступними діями із альбомом 
+         * де саме його створювати useParams()
+    * При переході на фото, отримую /albums/:id/ 
+         * що саме має приходити соди to={`${path}/albums/:userId`} 
+   */
 
    useEffect(() => {
       const getUsers = async () => {
@@ -43,10 +54,12 @@ const UsersList = (
                <p className='title'>{user.name}</p>
                <Link
                   className='to-album-link'
-                  to={`${path}/albums/${user.id}`}
+                  to={`${path}/albums/:userId`}
+                  // to={`${path}/albums/${user.id}`}
                   onClick={() => setSelectedUserId(user.id)}>Albums
                </Link>
                {selectedUserId === user.id && (
+                  // <Route path={`${path}/albums/:userId`}>
                   <Route path={`${path}/albums/:id`}>
                      <AlbumsList
                         albums={albums}
