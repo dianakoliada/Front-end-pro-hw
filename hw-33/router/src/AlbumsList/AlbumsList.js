@@ -48,7 +48,7 @@ const AlbumsList = (
                      onClick={() => setSelectedAlbumId(album.id)}> Photos
                   </Link>
                   {selectedAlbumId === album.id && (
-                     <Route path={`${path}/photos/:id`}>
+                     <Route path={`${path}/photos`}>
                         <PhotosList
                            photos={photos}
                            setPhotos={setPhotos}

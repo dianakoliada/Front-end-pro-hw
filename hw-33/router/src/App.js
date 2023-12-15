@@ -50,7 +50,7 @@ function App() {
                <Route path='/about'>
                   <About />
                </Route>
-               <Route path='/'>
+               <Route exact path='/'>
                   <Home />
                </Route>
             </Switch>
@@ -59,11 +59,8 @@ function App() {
    );
 }
 
-function Home() {
-   return <h1 className='title'>Home</h1>;
-}
-
 function About() {
+
    return (
       <>
          <h1 className='title'>About</h1>
@@ -73,6 +70,10 @@ function About() {
          </p>
       </>
    )
+}
+
+function Home() {
+   return <h1 className='title'>Home</h1>;
 }
 
 export default App;
