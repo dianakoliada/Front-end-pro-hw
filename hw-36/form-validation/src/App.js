@@ -8,7 +8,6 @@ function App() {
       userEmail: '',
       userTel: ''
    });
-   console.log(inputValues);
 
    const inputs = [
       {
