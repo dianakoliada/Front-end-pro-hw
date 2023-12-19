@@ -1,5 +1,6 @@
-import { useState } from 'react';
 import React from "react";
+import { useState } from 'react';
+import './App.css';
 import {
    BrowserRouter as Router,
    Switch,
@@ -7,12 +8,10 @@ import {
    Link
 } from "react-router-dom";
 import UsersList from './UsersList/UsersList';
-import './App.css';
+import AlbumsList from './AlbumsList/AlbumsList';
+import PhotosList from './PhotosList/PhotosList';
 
 function App() {
-   const [users, setUsers] = useState([]);
-   const [albums, setAlbums] = useState([]);
-   const [photos, setPhotos] = useState([]);
    const [selectedUserId, setSelectedUserId] = useState(null);
    const [selectedAlbumId, setSelectedAlbumId] = useState(null);
 
@@ -32,25 +31,24 @@ function App() {
                   </li>
                </ul>
             </div>
-
             <Switch>
-               <Route path='/users'>
-                  <UsersList
-                     users={users}
-                     setUsers={setUsers}
-                     selectedUserId={selectedUserId}
-                     setSelectedUserId={setSelectedUserId}
-                     selectedAlbumId={selectedAlbumId}
-                     setSelectedAlbumId={setSelectedAlbumId}
-                     albums={albums}
-                     setAlbums={setAlbums}
-                     photos={photos}
-                     setPhotos={setPhotos} />
-               </Route>
                <Route path='/about'>
                   <About />
                </Route>
-               <Route exact path='/'>
+               <Route path='/users'>
+                  <UsersList setSelectedUserId={setSelectedUserId} />
+               </Route>
+               <Route path='/album/:userName/:albumId'>
+                  <PhotosList
+                     selectedAlbumId={selectedAlbumId} />
+               </Route>
+               <Route path='/album/:userName/'>
+                  <AlbumsList
+                     selectedUserId={selectedUserId}
+                     setSelectedAlbumId={setSelectedAlbumId}
+                  />
+               </Route>
+               <Route path='/'>
                   <Home />
                </Route>
             </Switch>
@@ -60,7 +58,6 @@ function App() {
 }
 
 function About() {
-
    return (
       <>
          <h1 className='title'>About</h1>

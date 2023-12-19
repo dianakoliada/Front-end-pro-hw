@@ -1,23 +1,9 @@
 import './UsersList.css';
-import { useEffect } from 'react';
-import { Link, Route, useRouteMatch } from "react-router-dom";
-import AlbumsList from '../AlbumsList/AlbumsList';
+import { useEffect, useState } from 'react';
+import { Link } from "react-router-dom";
 
-const UsersList = (
-   {
-      users,
-      setUsers,
-      selectedUserId,
-      setSelectedUserId,
-      albums,
-      setAlbums,
-      photos,
-      setPhotos,
-      selectedAlbumId,
-      setSelectedAlbumId
-   }) => {
-
-   const { path } = useRouteMatch();
+const UsersList = ({ setSelectedUserId }) => {
+   const [users, setUsers] = useState([]);
 
    useEffect(() => {
       const getUsers = async () => {
@@ -44,21 +30,10 @@ const UsersList = (
                <p className='title'>{user.name}</p>
                <Link
                   className='to-album-link'
-                  to={`${path}/albums/${user.id}`}
-                  onClick={() => setSelectedUserId(user.id)}>Albums
-               </Link>
-               {selectedUserId === user.id && (
-                  <Route path={`${path}/albums`}>
-                     <AlbumsList
-                        albums={albums}
-                        setAlbums={setAlbums}
-                        photos={photos}
-                        setPhotos={setPhotos}
-                        selectedAlbumId={selectedAlbumId}
-                        setSelectedAlbumId={setSelectedAlbumId}
-                        selectedUserId={selectedUserId} />
-                  </Route>
-               )}
+                  to={`/album/${user.name.replace(/ /g, '_')}`}
+                  onClick={() => setSelectedUserId(user.id)}
+               >
+                  album</Link>
             </div>
          ))}
       </div>

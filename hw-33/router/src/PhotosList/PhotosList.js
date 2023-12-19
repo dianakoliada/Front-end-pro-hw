@@ -1,7 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import {
+   Link,
+   useParams
+} from 'react-router-dom';
 import './PhotosList.css';
 
-const PhotosList = ({ photos, setPhotos, selectedAlbumId }) => {
+const PhotosList = ({ selectedAlbumId }) => {
+   const [photos, setPhotos] = useState([]);
+   const { userName, albumId } = useParams();
 
    useEffect(() => {
       const getPhotos = async () => {
@@ -24,14 +30,18 @@ const PhotosList = ({ photos, setPhotos, selectedAlbumId }) => {
    }, [selectedAlbumId]);
 
    return (
-      <div className="img-list-holder">
-         {photos.map((photo) => (
-            <div key={photo.id} className="img-holder">
-               <p className="text">id: {photo.id}</p>
-               <img className="img" src={photo.thumbnailUrl} alt="" />
-            </div>
-         ))}
-      </div>
+      <>
+         <h3 className="text">Photos of {userName.replace(/_/g, ' ')}'s {albumId.replace(/_/g, ' ')}</h3>
+         <Link to={`/album/${userName}`}>Back to albums</Link>
+         <div className="img-list-holder">
+            {photos.map((photo) => (
+               <div key={photo.id} className="img-holder">
+                  <p className="text">id: {photo.id}</p>
+                  <img className="img" src={photo.thumbnailUrl} alt="" />
+               </div>
+            ))}
+         </div>
+      </>
    )
 }
 
