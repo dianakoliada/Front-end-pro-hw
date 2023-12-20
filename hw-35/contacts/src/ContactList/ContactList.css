@@ -1,0 +1,43 @@
+.title {
+   text-align: center;
+}
+
+table {
+   width: 60%;
+   border-collapse: collapse;
+   margin: 2rem auto;
+}
+
+th,
+td {
+   text-align: left;
+   padding: .6rem;
+   font-weight: normal;
+}
+
+tbody:nth-child(even) {
+   background-color: rgba(0, 48, 73, 1);
+}
+
+tbody:nth-child(odd) {
+   background-color: rgba(0, 48, 73, .6);
+}
+
+.btn {
+   padding: .5rem 1rem;
+   width: 5rem;
+   border-radius: 3px;
+   outline: none;
+   border: none;
+   background-color: white;
+   color: black;
+   cursor: pointer;
+   font-weight: 700;
+}
+
+.link {
+   margin-bottom: 2rem;
+   color: white;
+   text-decoration: none;
+}
+
