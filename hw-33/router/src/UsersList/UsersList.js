@@ -1,8 +1,8 @@
 import './UsersList.css';
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-const UsersList = ({ setSelectedUserId }) => {
+const UsersList = () => {
    const [users, setUsers] = useState([]);
 
    useEffect(() => {
@@ -30,13 +30,12 @@ const UsersList = ({ setSelectedUserId }) => {
                <p className='title'>{user.name}</p>
                <Link
                   className='to-album-link'
-                  to={`/album/${user.name.replace(/ /g, '_')}`}
-                  onClick={() => setSelectedUserId(user.id)}
-               >
+                  to={`/album/${user.name.replace(/ /g, '_')}/${user.id}`}>
                   album</Link>
             </div>
-         ))}
-      </div>
+         ))
+         }
+      </div >
    )
 }
 

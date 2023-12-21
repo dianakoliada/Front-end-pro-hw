@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import './AlbumsList.css';
 
-const AlbumsList = ({ selectedUserId, setSelectedAlbumId }) => {
+const AlbumsList = () => {
    const [albums, setAlbums] = useState([]);
-   const { userName } = useParams();
+   const { userName, userId } = useParams();
 
    useEffect(() => {
       const getAlbums = async () => {
          try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${selectedUserId}`);
+            const response = await fetch(`https://jsonplaceholder.typicode.com/albums?userId=${userId}`);
             if (!response.ok) {
                throw new Error("Failed to fetch albums");
             }
@@ -21,10 +21,10 @@ const AlbumsList = ({ selectedUserId, setSelectedAlbumId }) => {
          }
       };
 
-      if (selectedUserId) {
+      if (userId) {
          getAlbums();
       }
-   }, [selectedUserId]);
+   }, [userId]);
 
    return (
       <>
@@ -35,8 +35,7 @@ const AlbumsList = ({ selectedUserId, setSelectedAlbumId }) => {
                <div key={album.id} className="album-holder">
                   <Link
                      className='to-photo-link'
-                     onClick={() => setSelectedAlbumId(album.id)}
-                     to={`/album/${userName}/${album.title.replace(/ /g, '_')}`}>{album.title}</Link>
+                     to={`/album/${userName}/${userId}/${album.title.replace(/ /g, '_')}/${album.id}`}>{album.title}</Link>
                </div>
             )
          ))}

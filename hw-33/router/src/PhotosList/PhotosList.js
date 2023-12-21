@@ -5,14 +5,14 @@ import {
 } from 'react-router-dom';
 import './PhotosList.css';
 
-const PhotosList = ({ selectedAlbumId }) => {
+const PhotosList = () => {
    const [photos, setPhotos] = useState([]);
-   const { userName, albumId } = useParams();
+   const { userName, userId, albumId } = useParams();
 
    useEffect(() => {
       const getPhotos = async () => {
          try {
-            const response = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${selectedAlbumId}`);
+            const response = await fetch(`https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`);
             if (!response.ok) {
                throw new Error("Failed to fetch photos");
             }
@@ -24,15 +24,15 @@ const PhotosList = ({ selectedAlbumId }) => {
          }
       };
 
-      if (selectedAlbumId) {
+      if (albumId) {
          getPhotos();
       }
-   }, [selectedAlbumId]);
+   }, [albumId]);
 
    return (
       <>
          <h3 className="text">Photos of {userName.replace(/_/g, ' ')}'s {albumId.replace(/_/g, ' ')}</h3>
-         <Link to={`/album/${userName}`}>Back to albums</Link>
+         <Link to={`/album/${userName}/${userId}`}>Back to albums</Link>
          <div className="img-list-holder">
             {photos.map((photo) => (
                <div key={photo.id} className="img-holder">

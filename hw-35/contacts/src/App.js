@@ -1,5 +1,6 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 import {
    BrowserRouter as Router,
    Switch,
@@ -15,6 +16,22 @@ function App() {
       const updatedUsersList = usersList.filter((user) => user.id !== userId);
       setUsersList(updatedUsersList);
    }
+
+   useEffect(() => {
+      if (usersList.length === 0) {
+         fetchData();
+      }
+   });
+
+   const fetchData = async () => {
+      try {
+         const response = await axios.get('https://jsonplaceholder.typicode.com/users');
+
+         setUsersList(response.data);
+      } catch (error) {
+         console.error('error:', error);
+      }
+   };
 
    return (
       <Router>

@@ -1,26 +1,7 @@
 import './ContactList.css';
-import { useEffect } from 'react';
-import axios from 'axios';
 import { Link } from "react-router-dom";
 
-const ContactList = ({ usersList, setUsersList, onUserDeleteHandler }) => {
-
-   useEffect(() => {
-      if (usersList.length === 0) {
-         fetchData();
-      }
-   });
-
-   const fetchData = async () => {
-      try {
-         const response = await axios.get('https://jsonplaceholder.typicode.com/users');
-
-         setUsersList(response.data);
-      } catch (error) {
-         console.error('error:', error);
-      }
-   };
-
+const ContactList = ({ usersList, onUserDeleteHandler }) => {
    return (
       <>
          <h1 className='title'>Contacts</h1>

@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from 'react';
 import './App.css';
 import {
    BrowserRouter as Router,
@@ -12,9 +11,6 @@ import AlbumsList from './AlbumsList/AlbumsList';
 import PhotosList from './PhotosList/PhotosList';
 
 function App() {
-   const [selectedUserId, setSelectedUserId] = useState(null);
-   const [selectedAlbumId, setSelectedAlbumId] = useState(null);
-
    return (
       <Router>
          <div className='container'>
@@ -36,17 +32,13 @@ function App() {
                   <About />
                </Route>
                <Route path='/users'>
-                  <UsersList setSelectedUserId={setSelectedUserId} />
+                  <UsersList />
                </Route>
-               <Route path='/album/:userName/:albumId'>
-                  <PhotosList
-                     selectedAlbumId={selectedAlbumId} />
+               <Route path='/album/:userName/:userId/:albumName/:albumId'>
+                  <PhotosList />
                </Route>
-               <Route path='/album/:userName/'>
-                  <AlbumsList
-                     selectedUserId={selectedUserId}
-                     setSelectedAlbumId={setSelectedAlbumId}
-                  />
+               <Route path='/album/:userName/:userId'>
+                  <AlbumsList />
                </Route>
                <Route path='/'>
                   <Home />
